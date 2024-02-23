@@ -369,18 +369,17 @@ addMilk = () => {
 ```js
 class Sun {
   // Держим ссылку на созданный объект:
-  static instance = null
+  static #instance = null
 
   // Делаем конструктор приватным:
-  #constructor() {}
-
-  static get instance() {
+  constructor() {
     // Если объект был создан ранее, возвращаем его:
-    if (this.instance) return this.instance
+    if (Sun.#instance) {
+      return Sun.#instance;
+    }
 
-    // Иначе создаём новый экземпляр:
-    this.instance = new this()
-    return this.instance
+    // Иначе присваиваем объекту текущее значение this:
+    Sun.#instance = this;
   }
 }
 ```
@@ -389,12 +388,12 @@ class Sun {
 
 ```js
 // При первом вызове создастся новый объект:
-const sun = Sun.instance
+const sun = new Sun();
 
 // В дальнейшем instance будет возвращать
 // ранее созданный объект:
-const sun1 = Sun.instance
-const sun2 = Sun.instance
+const sun1 = new Sun();
+const sun2 = new Sun();
 
 console.log(sun === sun1)
 // true
