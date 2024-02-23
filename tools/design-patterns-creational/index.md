@@ -375,11 +375,11 @@ class Sun {
   constructor() {
     // Если объект был создан ранее, возвращаем его:
     if (Sun.#instance) {
-      return Sun.#instance;
+      return Sun.#instance
     }
 
     // Иначе присваиваем объекту текущее значение this:
-    Sun.#instance = this;
+    Sun.#instance = this
   }
 }
 ```
@@ -388,12 +388,12 @@ class Sun {
 
 ```js
 // При первом вызове создастся новый объект:
-const sun = new Sun();
+const sun = new Sun()
 
 // В дальнейшем instance будет возвращать
 // ранее созданный объект:
-const sun1 = new Sun();
-const sun2 = new Sun();
+const sun1 = new Sun()
+const sun2 = new Sun()
 
 console.log(sun === sun1)
 // true
